@@ -1,6 +1,12 @@
-Tetris Game with Autoplayer
+![alt text](https://github.com/BrendonSutaj/Tetris_Rust/blob/master/resources/tetris.png "Tetris")
 
-Requirements:
--    rustc 1.31+
--    sdl2
+# Tetris Game with Autoplayer in Rust
 
+
+
+### Requirements:
+___
+
+
+  * **SDL2 which you can get here:** [sdl2_crate](https://github.com/Rust-SDL2/rust-sdl2#user-content-requirements "SDL2 Crate")
+  * **Rustc Version 1.31+**
