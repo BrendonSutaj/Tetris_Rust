@@ -1,7 +1,5 @@
 ![alt text](https://github.com/BrendonSutaj/Tetris_Rust/blob/master/resources/tetris.png "Tetris")
 
-# Tetris
-
 An Implementation of the famous retro game Tetris, programmed entirely in Rust.
 There is also an autoplayer included.
 
