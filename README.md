@@ -8,7 +8,7 @@ There is also an autoplayer included.
 
 ## Getting Started
 
-Just clone the repository and run it via the `cargo run`.
+Just clone the repository and run it via `cargo run`.
 
 
 ### Prerequisites
