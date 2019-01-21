@@ -8,7 +8,7 @@ There is also an autoplayer included.
 
 ## Getting Started
 
-Just clone the repository and run the 'cargo run' command.
+Just clone the repository and run it via the `cargo run`.
 
 
 ### Prerequisites
@@ -25,7 +25,3 @@ Just clone the repository and run the 'cargo run' command.
 ## Authors
 
 * **Brendon Sutaj** 
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
