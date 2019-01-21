@@ -1,0 +1,8 @@
+[package]
+name = "tetris"
+version = "0.1.0"
+authors = ["Brendon Sutaj <s9brendon.sutaj@gmail.com>"]
+
+[dependencies]
+rand = "0.6.1"
+ggez = "0.4.4"
