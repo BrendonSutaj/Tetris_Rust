@@ -13,8 +13,8 @@ Just clone the repository and run the 'cargo run' command.
 
 ### Prerequisites
 
-  * **SDL2 which you can get here:** [sdl2_crate](https://github.com/Rust-SDL2/rust-sdl2#user-content-requirements "SDL2 Crate")
-  * **Rustc Version 1.31+**
+  * SDL2 which you can get here: [sdl2_crate](https://github.com/Rust-SDL2/rust-sdl2#user-content-requirements "SDL2 Crate")
+  * rustc Version 1.31+
 
 
 ## Built With
