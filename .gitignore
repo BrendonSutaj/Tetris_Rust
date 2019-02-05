@@ -1,0 +1,8 @@
+/target
+/.idea
+/**/*.rs.bk
+*.xml
+*.iml
+
+CMakeLists.txt
+cmake-build-debug/

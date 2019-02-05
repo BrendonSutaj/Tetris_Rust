@@ -4,7 +4,7 @@ pub mod point;
 use Game;
 
 ///
-/// This module represents a utility module. Modules that are used throughout the game but don't belong anywhere else.
+/// This module represents a utility module. Functions that are used throughout the game but don't belong anywhere else.
 ///
 
 ///

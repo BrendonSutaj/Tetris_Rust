@@ -8,53 +8,67 @@ use GameResult;
 use Context;
 use Keycode;
 use Mod;
+use Board;
 
 use event;
 use utility;
 use timer;
 
 
-
 ///
-/// The struct that has all the information needed for the gui and the game logic.
+/// This struct represents the Main_state, where the game itself will happen.
+///
+/// - gui:                  the information of the GUI
+/// - game:                 the game
+/// - time_since_start_old: used to compute the automatic move-down correctly
+/// - autoplay:             indicates if the autoplayer is running
+/// - is_game_over:         indicates if the game is over
+/// - auto_player:          the actual auto_player
 ///
 pub struct MainState {
     pub gui: GUI,
     pub game: Game,
     pub time_since_start_old: f64,
     pub autoplay: bool,
+    pub is_game_over: bool,
     pub auto_player: Autoplayer,
 }
 
 
 impl MainState {
-    pub fn new(gui: GUI, game: Game, autoplay: bool, auto_player: Autoplayer) -> MainState {
-        MainState{
+    pub fn new(autoplay: bool) -> MainState {
+        let gui = GUI::new();
+        let game = Game::new(Board::new(gui.rows as usize, gui.columns as usize));
+        let auto_player = Autoplayer::new();
+        MainState {
             gui,
             game,
             time_since_start_old: 0.0,
             autoplay,
+            is_game_over: false,
             auto_player,
         }
+
     }
 
     ///
     /// This function translates the autoplayer move command to a game step and performs the move.
     ///
     pub fn auto_player_move(&mut self) {
+
         match self.auto_player.perform_move(&mut self.game) {
             Command::Down => {
                 if self.game.step(MoveDirection::Down) { self.auto_player.compute_move(&mut self.game); }
-            },
+            }
             Command::Left => {
                 if self.game.step(MoveDirection::Left) { self.auto_player.compute_move(&mut self.game); }
-            },
+            }
             Command::Right => {
                 if self.game.step(MoveDirection::Right) { self.auto_player.compute_move(&mut self.game); }
-            },
+            }
             Command::RotateClockWise => {
                 self.game.rotate_piece_clockwise();
-            },
+            }
         }
     }
 }
@@ -85,7 +99,6 @@ impl event::EventHandler for MainState {
             }
             // Human player is active.
         } else {
-
             if time_since_start_new - self.time_since_start_old >= duration {
                 self.game.step(MoveDirection::Down);
                 self.time_since_start_old = time_since_start_new;
@@ -93,7 +106,8 @@ impl event::EventHandler for MainState {
         }
 
         // Quit by setting ctx.continue to false.
-        if self.game.is_game_over() {
+        if self.game.is_game_over() && !self.is_game_over {
+            self.is_game_over = true;
             ctx.quit()?;
         }
 
@@ -116,6 +130,10 @@ impl event::EventHandler for MainState {
     ///                 Escape              - to quit the game early.
     ///
     fn key_down_event(&mut self, ctx: &mut Context, keycode: Keycode, _key_mods: Mod, _repeat: bool) {
+        if self.game.is_game_over() {
+            return;
+        }
+
         // Match on the keycode of the Key that was pressed.
         match keycode {
             Keycode::Left => {
@@ -151,14 +169,14 @@ impl event::EventHandler for MainState {
                     _ => {}
                 }
             }
-            _ => {}
+            _ => { return; }
         }
 
-        // Draw the content after each key_event. The update function felt to slow.
+        // Draw the content after each key_event. The update function felt too slow.
         match self.gui.draw_content(&mut self.game, ctx) {
             Err(_e) => {
-                println!("Draw Error, KeyDownEvent in /main.rs");
-            },
+                println!("/main_state/main.rs, Draw Error occurred.");
+            }
             _ => {}
         }
     }

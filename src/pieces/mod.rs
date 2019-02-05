@@ -236,4 +236,589 @@ mod tests {
         assert_eq!(Piece::new(PieceType::Z,m, point), get_z_piece());
     }
 
+
+    #[test]
+    fn rotate_clockwise_i(){
+        let mut piece = get_i_piece();
+
+        //first rotation
+        piece.perform_clockwise_rotation();
+        let point = Point::new(0, 2);
+        let mut m = Matrix::new(1, 4);
+        m.data[0][0] = true; m.data[0][1]=true; m.data[0][2]=true; m.data[0][3]=true;
+
+        assert_eq!(Piece::new(PieceType::I,m, point),piece);
+
+        //second rotation
+        piece.perform_clockwise_rotation();
+
+        let point = Point::new(2, 0);
+        let mut m = Matrix::new(4, 1);
+        m.data[0][0] = true;
+        m.data[1][0] = true;
+        m.data[2][0] = true;
+        m.data[3][0] = true;
+
+        assert_eq!(Piece::new(PieceType::I,m, point),piece);
+
+
+        //third rotation
+        piece.perform_clockwise_rotation();
+
+        let point = Point::new(0, 1);
+        let mut m = Matrix::new(1, 4);
+        m.data[0][0] = true; m.data[0][1]=true; m.data[0][2]=true; m.data[0][3]=true;
+
+        assert_eq!(Piece::new(PieceType::I,m, point),piece);
+
+        //back to start rotation
+        piece.perform_clockwise_rotation();
+        assert_eq!(get_i_piece(),piece);
+    }
+
+
+    #[test]
+    fn rotate_clockwise_j(){
+        let mut piece = get_j_piece();
+
+        //first rotation
+        piece.perform_clockwise_rotation();
+
+        let point = Point::new(1, 1);
+        let mut m = Matrix::new(2, 3);
+        m.data[0][0] = true; m.data[0][1] = false; m.data[0][2]=false;
+        m.data[1][0] = true; m.data[1][1] = true; m.data[1][2]=true;
+
+        assert_eq!(Piece::new(PieceType::J,m,point),piece);
+
+        //second rotation
+        piece.perform_clockwise_rotation();
+
+        let point = Point::new(1, 0);
+        let mut m = Matrix::new(3, 2);
+        m.data[0][0] = true; m.data[0][1] = true;
+        m.data[1][0] = true; m.data[1][1] = false;
+        m.data[2][0] = true;  m.data[2][1] = false;
+
+        assert_eq!(Piece::new(PieceType::J,m,point),piece);
+
+        //third rotation
+        piece.perform_clockwise_rotation();
+
+        let point = Point::new(0, 1);
+        let mut m = Matrix::new(2, 3);
+        m.data[0][0] = true; m.data[0][1] = true; m.data[0][2]=true;
+        m.data[1][0] = false; m.data[1][1] = false; m.data[1][2]=true;
+
+        assert_eq!(Piece::new(PieceType::J,m,point),piece);
+
+        //back to start rotation
+        piece.perform_clockwise_rotation();
+        assert_eq!(get_j_piece(),piece);
+    }
+
+
+    #[test]
+    fn rotate_clockwise_l(){
+        let mut piece = get_l_piece();
+
+        //first rotation
+        piece.perform_clockwise_rotation();
+
+        let point = Point::new(0, 1);
+        let mut m = Matrix::new(2, 3);
+        m.data[0][0] = true; m.data[0][1] = true; m.data[0][2]=true;
+        m.data[1][0] = true; m.data[1][1] = false; m.data[1][2]=false;
+
+        assert_eq!(Piece::new(PieceType::L,m,point),piece);
+
+        //second rotation
+        piece.perform_clockwise_rotation();
+
+        let point = Point::new(1, 1);
+        let mut m = Matrix::new(3, 2);
+        m.data[0][0] = true; m.data[0][1] = true;
+        m.data[1][0] = false; m.data[1][1] = true;
+        m.data[2][0] = false;  m.data[2][1] = true;
+
+        assert_eq!(Piece::new(PieceType::L,m,point),piece);
+
+        //third rotation
+        piece.perform_clockwise_rotation();
+
+        let point = Point::new(1, 1);
+        let mut m = Matrix::new(2, 3);
+        m.data[0][0] = false; m.data[0][1] = false; m.data[0][2]=true;
+        m.data[1][0] = true; m.data[1][1] = true; m.data[1][2]=true;
+
+        assert_eq!(Piece::new(PieceType::L,m,point),piece);
+
+        //back to start rotation
+
+        piece.perform_clockwise_rotation();
+
+        assert_eq!(get_l_piece(),piece);
+    }
+
+
+    #[test]
+    fn rotate_clockwise_o(){
+        let mut piece = get_o_piece();
+
+        //first rotation
+        piece.perform_clockwise_rotation();
+
+        let point = Point::new(1, 0);
+        let mut m = Matrix::new(2, 2);
+        m.data[0][0] = true; m.data[0][1] = true;
+        m.data[1][0] = true; m.data[1][1] = true;
+
+        assert_eq!(Piece::new(PieceType::O,m,point),piece);
+
+        //second rotation
+        piece.perform_clockwise_rotation();
+        let point = Point::new(0,0);
+        let mut m = Matrix::new(2, 2);
+        m.data[0][0] = true; m.data[0][1] = true;
+        m.data[1][0] = true; m.data[1][1] = true;
+
+        assert_eq!(Piece::new(PieceType::O,m,point),piece);
+
+        //third rotation
+        piece.perform_clockwise_rotation();
+        let point = Point::new(0,1);
+        let mut m = Matrix::new(2, 2);
+        m.data[0][0] = true; m.data[0][1] = true;
+        m.data[1][0] = true; m.data[1][1] = true;
+
+        assert_eq!(Piece::new(PieceType::O,m,point),piece);
+
+        //back to start rotation
+        piece.perform_clockwise_rotation();
+
+        assert_eq!(get_o_piece(),piece);
+
+    }
+
+    #[test]
+    fn rotate_clockwise_s(){
+        let mut piece = get_s_piece();
+
+        //first rotation
+        piece.perform_clockwise_rotation();
+
+        let point = Point::new(1, 0);
+        let mut m = Matrix::new(3, 2);
+        m.data[0][0] = true; m.data[0][1] = false;
+        m.data[1][0] = true; m.data[1][1] = true;
+        m.data[2][0] = false; m.data[2][1]= true;
+
+        assert_eq!(Piece::new(PieceType::S,m,point),piece);
+
+        //second rotation
+        piece.perform_clockwise_rotation();
+
+        let point = Point::new(0, 1);
+        let mut m = Matrix::new(2, 3);
+        m.data[0][0] = false; m.data[0][1] = true; m.data[0][2] = true;
+        m.data[1][0] = true; m.data[1][1] = true; m.data[1][2] = false;
+
+        assert_eq!(Piece::new(PieceType::S,m,point),piece);
+
+        //third rotation
+        piece.perform_clockwise_rotation();
+        let point = Point::new(1, 1);
+        let mut m = Matrix::new(3, 2);
+        m.data[0][0] = true; m.data[0][1] = false;
+        m.data[1][0] = true; m.data[1][1] = true;
+        m.data[2][0] = false; m.data[2][1]= true;
+
+        assert_eq!(Piece::new(PieceType::S,m,point),piece);
+
+        //back to the start rotation
+        piece.perform_clockwise_rotation();
+
+        assert_eq!(get_s_piece(),piece);
+    }
+
+    #[test]
+    fn rotate_clockwise_t(){
+        let mut piece = get_t_piece();
+
+        //first rotation
+        piece.perform_clockwise_rotation();
+
+        let point = Point::new(1, 1);
+        let mut m = Matrix::new(3, 2);
+        m.data[0][0] = false; m.data[0][1] = true;
+        m.data[1][0] = true; m.data[1][1] = true;
+        m.data[2][0] = false; m.data[2][1] = true;
+
+        assert_eq!(Piece::new(PieceType::T,m,point),piece);
+        //second rotation
+        piece.perform_clockwise_rotation();
+
+        let point = Point::new(1, 1);
+        let mut m = Matrix::new(2, 3);
+        m.data[0][0] = false; m.data[0][1] = true; m.data[0][2] = false;
+        m.data[1][0] = true; m.data[1][1] = true; m.data[1][2] = true;
+
+        assert_eq!(Piece::new(PieceType::T,m,point),piece);
+
+        //third rotation
+        piece.perform_clockwise_rotation();
+
+        let point = Point::new(1, 0);
+        let mut m = Matrix::new(3, 2);
+        m.data[0][0] = true; m.data[0][1] = false;
+        m.data[1][0] = true; m.data[1][1] = true;
+        m.data[2][0] = true; m.data[2][1] = false;
+
+        assert_eq!(Piece::new(PieceType::T,m,point),piece);
+
+        //back to start rotation
+        piece.perform_clockwise_rotation();
+
+        assert_eq!(get_t_piece(),piece);
+    }
+
+
+
+    #[test]
+    fn rotate_clockwise_z(){
+        let mut piece = get_z_piece();
+
+        //first rotation
+        piece.perform_clockwise_rotation();
+
+        let point = Point::new(1, 0);
+        let mut m = Matrix::new(3, 2);
+        m.data[0][0] = false; m.data[0][1] = true;
+        m.data[1][0] = true; m.data[1][1] = true;
+        m.data[2][0]= true; m.data[2][1]=false;
+
+        assert_eq!(Piece::new(PieceType::Z,m,point),piece);
+
+        //second rotation
+        piece.perform_clockwise_rotation();
+
+        let point = Point::new(0, 1);
+        let mut m = Matrix::new(2, 3);
+        m.data[0][0] = true; m.data[0][1] = true; m.data[0][2] = false;
+        m.data[1][0] = false; m.data[1][1] = true; m.data[1][2] = true;
+
+        assert_eq!(Piece::new(PieceType::Z,m,point),piece);
+
+        //third rotation
+        piece.perform_clockwise_rotation();
+
+        let point = Point::new(1, 1);
+        let mut m = Matrix::new(3, 2);
+        m.data[0][0] = false; m.data[0][1] = true;
+        m.data[1][0] = true; m.data[1][1] = true;
+        m.data[2][0]= true; m.data[2][1]=false;
+
+        assert_eq!(Piece::new(PieceType::Z,m,point),piece);
+
+        //back to start rotation
+        piece.perform_clockwise_rotation();
+
+        assert_eq!(get_z_piece(),piece);
+    }
+
+    #[test]
+    fn rotate_counterclockwise_i(){
+        let mut piece = get_i_piece();
+
+        //first rotation
+        piece.perform_counter_clockwise_rotation();
+
+        let point = Point::new(0, 1);
+        let mut m = Matrix::new(1, 4);
+        m.data[0][0] = true; m.data[0][1]=true; m.data[0][2]=true; m.data[0][3]=true;
+
+        assert_eq!(Piece::new(PieceType::I,m, point),piece);
+
+        //second rotation
+        piece.perform_counter_clockwise_rotation();
+
+        let point = Point::new(2, 0);
+        let mut m = Matrix::new(4, 1);
+        m.data[0][0] = true;
+        m.data[1][0] = true;
+        m.data[2][0] = true;
+        m.data[3][0] = true;
+
+        assert_eq!(Piece::new(PieceType::I,m, point),piece);
+
+
+        //third rotation
+        piece.perform_counter_clockwise_rotation();
+
+        let point = Point::new(0, 2);
+        let mut m = Matrix::new(1, 4);
+        m.data[0][0] = true; m.data[0][1]=true; m.data[0][2]=true; m.data[0][3]=true;
+
+
+        assert_eq!(Piece::new(PieceType::I,m, point),piece);
+
+        //back to start rotation
+        piece.perform_counter_clockwise_rotation();
+        assert_eq!(get_i_piece(),piece);
+    }
+
+    #[test]
+    fn rotate_counterclockwise_j(){
+        let mut piece = get_j_piece();
+
+        //first rotation
+        piece.perform_counter_clockwise_rotation();
+
+        let point = Point::new(0, 1);
+        let mut m = Matrix::new(2, 3);
+        m.data[0][0] = true; m.data[0][1] = true; m.data[0][2]=true;
+        m.data[1][0] = false; m.data[1][1] = false; m.data[1][2]=true;
+
+        assert_eq!(Piece::new(PieceType::J,m,point),piece);
+
+        //second rotation
+        piece.perform_counter_clockwise_rotation();
+
+        let point = Point::new(1, 0);
+        let mut m = Matrix::new(3, 2);
+        m.data[0][0] = true; m.data[0][1] = true;
+        m.data[1][0] = true; m.data[1][1] = false;
+        m.data[2][0] = true;  m.data[2][1] = false;
+
+        assert_eq!(Piece::new(PieceType::J,m,point),piece);
+
+        //third rotation
+        piece.perform_counter_clockwise_rotation();
+
+        let point = Point::new(1, 1);
+        let mut m = Matrix::new(2, 3);
+        m.data[0][0] = true; m.data[0][1] = false; m.data[0][2]=false;
+        m.data[1][0] = true; m.data[1][1] = true; m.data[1][2]=true;
+
+
+
+        assert_eq!(Piece::new(PieceType::J,m,point),piece);
+
+        //back to start rotation
+        piece.perform_counter_clockwise_rotation();
+
+        assert_eq!(get_j_piece(),piece);
+    }
+
+    #[test]
+    fn rotate_counterclockwise_l(){
+        let mut piece = get_l_piece();
+
+        //first rotation
+        piece.perform_counter_clockwise_rotation();
+
+        let point = Point::new(1, 1);
+        let mut m = Matrix::new(2, 3);
+        m.data[0][0] = false; m.data[0][1] = false; m.data[0][2]=true;
+        m.data[1][0] = true; m.data[1][1] = true; m.data[1][2]=true;
+
+        assert_eq!(Piece::new(PieceType::L,m,point),piece);
+
+        //second rotation
+        piece.perform_counter_clockwise_rotation();
+
+        let point = Point::new(1, 1);
+        let mut m = Matrix::new(3, 2);
+        m.data[0][0] = true; m.data[0][1] = true;
+        m.data[1][0] = false; m.data[1][1] = true;
+        m.data[2][0] = false;  m.data[2][1] = true;
+
+        assert_eq!(Piece::new(PieceType::L,m,point),piece);
+
+        //third rotation
+        piece.perform_counter_clockwise_rotation();
+
+        let point = Point::new(0, 1);
+        let mut m = Matrix::new(2, 3);
+        m.data[0][0] = true; m.data[0][1] = true; m.data[0][2]=true;
+        m.data[1][0] = true; m.data[1][1] = false; m.data[1][2]=false;
+
+        assert_eq!(Piece::new(PieceType::L,m,point),piece);
+
+        //back to start rotation
+
+        piece.perform_counter_clockwise_rotation();
+
+        assert_eq!(get_l_piece(),piece);
+    }
+
+
+    #[test]
+    fn rotate_counterclockwise_o(){
+        let mut piece = get_o_piece();
+
+        //first rotation
+        piece.perform_counter_clockwise_rotation();
+
+        let point = Point::new(0,1);
+        let mut m = Matrix::new(2, 2);
+        m.data[0][0] = true; m.data[0][1] = true;
+        m.data[1][0] = true; m.data[1][1] = true;
+
+        assert_eq!(Piece::new(PieceType::O,m,point),piece);
+
+        //second rotation
+        piece.perform_counter_clockwise_rotation();
+
+        let point = Point::new(0,0);
+        let mut m = Matrix::new(2, 2);
+        m.data[0][0] = true; m.data[0][1] = true;
+        m.data[1][0] = true; m.data[1][1] = true;
+
+        assert_eq!(Piece::new(PieceType::O,m,point),piece);
+
+        //third rotation
+        piece.perform_counter_clockwise_rotation();
+
+        let point = Point::new(1, 0);
+        let mut m = Matrix::new(2, 2);
+        m.data[0][0] = true; m.data[0][1] = true;
+        m.data[1][0] = true; m.data[1][1] = true;
+
+        assert_eq!(Piece::new(PieceType::O,m,point),piece);
+
+        //back to start rotation
+        piece.perform_counter_clockwise_rotation();
+
+        assert_eq!(get_o_piece(),piece);
+
+    }
+
+
+    #[test]
+    fn rotate_counterclockwise_s(){
+        let mut piece = get_s_piece();
+
+        //first rotation
+        piece.perform_counter_clockwise_rotation();
+
+        let point = Point::new(1, 1);
+        let mut m = Matrix::new(3, 2);
+        m.data[0][0] = true; m.data[0][1] = false;
+        m.data[1][0] = true; m.data[1][1] = true;
+        m.data[2][0] = false; m.data[2][1]= true;
+
+        assert_eq!(Piece::new(PieceType::S,m,point),piece);
+
+        //second rotation
+        piece.perform_counter_clockwise_rotation();
+
+        let point = Point::new(0, 1);
+        let mut m = Matrix::new(2, 3);
+        m.data[0][0] = false; m.data[0][1] = true; m.data[0][2] = true;
+        m.data[1][0] = true; m.data[1][1] = true; m.data[1][2] = false;
+
+        assert_eq!(Piece::new(PieceType::S,m,point),piece);
+
+        //third rotation
+        piece.perform_counter_clockwise_rotation();
+
+        let point = Point::new(1, 0);
+        let mut m = Matrix::new(3, 2);
+        m.data[0][0] = true; m.data[0][1] = false;
+        m.data[1][0] = true; m.data[1][1] = true;
+        m.data[2][0] = false; m.data[2][1]= true;
+
+        assert_eq!(Piece::new(PieceType::S,m,point),piece);
+
+        //back to the start rotation
+        piece.perform_counter_clockwise_rotation();
+
+        assert_eq!(get_s_piece(),piece);
+    }
+
+    #[test]
+    fn rotate_counterclockwise_t(){
+        let mut piece = get_t_piece();
+
+        //first rotation
+        piece.perform_counter_clockwise_rotation();
+
+        let point = Point::new(1, 0);
+        let mut m = Matrix::new(3, 2);
+        m.data[0][0] = true; m.data[0][1] = false;
+        m.data[1][0] = true; m.data[1][1] = true;
+        m.data[2][0] = true; m.data[2][1] = false;
+
+        assert_eq!(Piece::new(PieceType::T,m,point),piece);
+        //second rotation
+        piece.perform_counter_clockwise_rotation();
+
+        let point = Point::new(1, 1);
+        let mut m = Matrix::new(2, 3);
+        m.data[0][0] = false; m.data[0][1] = true; m.data[0][2] = false;
+        m.data[1][0] = true; m.data[1][1] = true; m.data[1][2] = true;
+
+        assert_eq!(Piece::new(PieceType::T,m,point),piece);
+
+        //third rotation
+        piece.perform_counter_clockwise_rotation();
+
+        let point = Point::new(1, 1);
+        let mut m = Matrix::new(3, 2);
+        m.data[0][0] = false; m.data[0][1] = true;
+        m.data[1][0] = true; m.data[1][1] = true;
+        m.data[2][0] = false; m.data[2][1] = true;
+
+        assert_eq!(Piece::new(PieceType::T,m,point),piece);
+
+        //back to start rotation
+        piece.perform_counter_clockwise_rotation();
+
+        assert_eq!(get_t_piece(),piece);
+    }
+
+
+    #[test]
+    fn rotate_counterclockwise_z(){
+        let mut piece = get_z_piece();
+
+        //first rotation
+        piece.perform_counter_clockwise_rotation();
+
+        let point = Point::new(1, 1);
+        let mut m = Matrix::new(3, 2);
+        m.data[0][0] = false; m.data[0][1] = true;
+        m.data[1][0] = true; m.data[1][1] = true;
+        m.data[2][0]= true; m.data[2][1]=false;
+
+        assert_eq!(Piece::new(PieceType::Z,m,point),piece);
+
+        //second rotation
+        piece.perform_counter_clockwise_rotation();
+
+        let point = Point::new(0, 1);
+        let mut m = Matrix::new(2, 3);
+        m.data[0][0] = true; m.data[0][1] = true; m.data[0][2] = false;
+        m.data[1][0] = false; m.data[1][1] = true; m.data[1][2] = true;
+
+        assert_eq!(Piece::new(PieceType::Z,m,point),piece);
+
+        //third rotation
+        piece.perform_counter_clockwise_rotation();
+
+        let point = Point::new(1, 0);
+        let mut m = Matrix::new(3, 2);
+        m.data[0][0] = false; m.data[0][1] = true;
+        m.data[1][0] = true; m.data[1][1] = true;
+        m.data[2][0]= true; m.data[2][1]=false;
+
+        assert_eq!(Piece::new(PieceType::Z,m,point),piece);
+
+        //back to start rotation
+        piece.perform_counter_clockwise_rotation();
+
+        assert_eq!(get_z_piece(),piece);
+    }
+
 }
